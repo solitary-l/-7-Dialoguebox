@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Dialogue box</string>
+    <string name="提示">提示</string>
+    <string name="登录">登录</string>>
+    <string name="login">login</string>
+    <string name="cancel">cancel</string>>
+</resources>
