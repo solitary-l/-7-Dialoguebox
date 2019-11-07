@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,22 +51,35 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
-                LayoutInflater inflater=getLayoutInflater();
-                builder.setView(inflater.inflate(R.layout.login_dialog,null))
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                final View v = inflater.inflate(R.layout.login_dialog, null);
+                builder.setView(inflater.inflate(R.layout.login_dialog, null))
                         .setTitle("login")
                         .setPositiveButton(R.string.login, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                EditText userId = (EditText) v.findViewById(R.id.editTextUserId);
+                                EditText pwd = (EditText) v.findViewById(R.id.editTextPwd);
+                                String u = userId.getText().toString().trim();
+                                String p = pwd.getText().toString().trim();
+                                if (u.equals("abc") && p.equals("123"))
+                                {
+                                    Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(MainActivity.this, "登录失败", Toast.LENGTH_LONG).show();
+                                }
                             }
                         })
-                        .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog,int id){
-
-                    }
-                });
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //cancel
+                                Toast.makeText(MainActivity.this, "用户取消登录", Toast.LENGTH_LONG).show();
+                            }
+                        });
                 builder.show();
             }
-        });
-    }
+
+    });
+}
 }
