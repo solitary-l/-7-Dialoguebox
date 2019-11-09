@@ -54,9 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 LayoutInflater inflater = getLayoutInflater();
                 final View v = inflater.inflate(R.layout.login_dialog, null);
-                builder.setView(inflater.inflate(R.layout.login_dialog, null))
-                        .setTitle("login")
-                        .setPositiveButton(R.string.login, new DialogInterface.OnClickListener() {
+                builder.setView(v).setTitle("login").setPositiveButton(R.string.login, new DialogInterface.OnClickListener() {
+                    @Override
                             public void onClick(DialogInterface dialog, int id)
                             {
                                 EditText userId = (EditText) v.findViewById(R.id.editTextUserId);
@@ -66,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
                                 if (u.equals("abc") && p.equals("123"))
                                 {
                                     Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_LONG).show();
-                                } else {
+                                }
+                                else {
                                     Toast.makeText(MainActivity.this, "登录失败", Toast.LENGTH_LONG).show();
                                 }
                             }
